@@ -35,7 +35,7 @@ function start() {
 
 start();
 
-appData = {
+const appData = {
   budget: money,
   expenses: {},
   optionalExpenses: {},
