@@ -11,16 +11,19 @@ window.addEventListener('DOMContentLoaded', function() {
       tabContent[i].classList.add('hide');
     }
   }
-  hideTabContent(1);
+  hideTabContent(0);
 
   function showTabContent(b) {
     if (tabContent[b].classList.contains('hide')) {
       tabContent[b].classList.remove('hide');
       tabContent[b].classList.add('show');
+      let tabButton = tabContent[b].querySelector('.description-btn');
+      modalWindow(tabButton);
     }
   }
+  showTabContent(0);
 
-  info.addEventListener('click', function(event) {
+  info.addEventListener('click', function infoSlider(event) {
     let target = event.target;
     if (target && target.classList.contains('info-header-tab')) {
       for (let i = 0; i < tab.length; i++) {
@@ -32,6 +35,7 @@ window.addEventListener('DOMContentLoaded', function() {
       }
     }
   });
+
   // timer
   let deadline = '2020-03-21';
   function getTimeRemaining(endtime) {
@@ -76,4 +80,26 @@ window.addEventListener('DOMContentLoaded', function() {
     }
   }
   setClock('timer', deadline);
+
+  // modal
+  let more = document.querySelector('.more');
+
+  function modalWindow(element) {
+    let overlay = document.querySelector('.overlay');
+    let close = document.querySelector('.popup-close');
+
+    element.addEventListener('click', function() {
+      overlay.style.display = 'block';
+      this.classList.add('more-splash');
+      document.body.style.overflow = 'hidden';
+    });
+
+    close.addEventListener('click', function() {
+      overlay.style.display = 'none';
+      element.classList.remove('more-splash');
+      document.body.style.overflow = '';
+    });
+  }
+
+  modalWindow(more);
 });
