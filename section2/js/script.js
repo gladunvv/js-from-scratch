@@ -23,7 +23,7 @@ window.addEventListener('DOMContentLoaded', function() {
   }
   showTabContent(0);
 
-  info.addEventListener('click', function infoSlider(event) {
+  info.addEventListener('click', function(event) {
     let target = event.target;
     if (target && target.classList.contains('info-header-tab')) {
       for (let i = 0; i < tab.length; i++) {
