@@ -1,4 +1,4 @@
-window.addEventListener('DOMContentLoaded', function() {
+window.addEventListener('DOMContentLoaded', function () {
   'use strict';
 
   let tab = document.querySelectorAll('.info-header-tab'),
@@ -23,7 +23,7 @@ window.addEventListener('DOMContentLoaded', function() {
   }
   showTabContent(0);
 
-  info.addEventListener('click', function(event) {
+  info.addEventListener('click', function (event) {
     let target = event.target;
     if (target && target.classList.contains('info-header-tab')) {
       for (let i = 0; i < tab.length; i++) {
@@ -40,15 +40,15 @@ window.addEventListener('DOMContentLoaded', function() {
   let deadline = '2020-03-21';
   function getTimeRemaining(endtime) {
     let total = Date.parse(endtime) - Date.parse(new Date()),
-      seconds = Math.floor((t / 1000) % 60),
-      minutes = Math.floor((t / 1000 / 60) % 60),
-      hours = Math.floor(t / (1000 * 60 * 60));
+      seconds = Math.floor((total / 1000) % 60),
+      minutes = Math.floor((total / 1000 / 60) % 60),
+      hours = Math.floor(total / (1000 * 60 * 60));
 
     return {
       total,
       hours,
       minutes,
-      seconds,
+      seconds
     };
   }
 
@@ -61,7 +61,7 @@ window.addEventListener('DOMContentLoaded', function() {
 
     function updateClock() {
       let t = getTimeRemaining(endtime);
-
+      
       function addZero(num) {
         if (num <= 9) {
           return '0' + num;
@@ -88,13 +88,13 @@ window.addEventListener('DOMContentLoaded', function() {
     let overlay = document.querySelector('.overlay');
     let close = document.querySelector('.popup-close');
 
-    element.addEventListener('click', function() {
+    element.addEventListener('click', function () {
       overlay.style.display = 'block';
       this.classList.add('more-splash');
       document.body.style.overflow = 'hidden';
     });
 
-    close.addEventListener('click', function() {
+    close.addEventListener('click', function () {
       overlay.style.display = 'none';
       element.classList.remove('more-splash');
       document.body.style.overflow = '';
