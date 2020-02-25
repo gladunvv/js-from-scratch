@@ -1,31 +1,31 @@
-window.addEventListener("DOMContentLoaded", function() {
-  "use strict";
+window.addEventListener('DOMContentLoaded', function() {
+  'use strict';
 
-  let tab = document.querySelectorAll(".info-header-tab"),
-    info = document.querySelector(".info-header"),
-    tabContent = document.querySelectorAll(".info-tabcontent");
+  let tab = document.querySelectorAll('.info-header-tab'),
+    info = document.querySelector('.info-header'),
+    tabContent = document.querySelectorAll('.info-tabcontent');
 
   function hideTabContent(a) {
     for (let i = a; i < tabContent.length; i++) {
-      tabContent[i].classList.remove("show");
-      tabContent[i].classList.add("hide");
+      tabContent[i].classList.remove('show');
+      tabContent[i].classList.add('hide');
     }
   }
   hideTabContent(0);
 
   function showTabContent(b) {
-    if (tabContent[b].classList.contains("hide")) {
-      tabContent[b].classList.remove("hide");
-      tabContent[b].classList.add("show");
-      let tabButton = tabContent[b].querySelector(".description-btn");
+    if (tabContent[b].classList.contains('hide')) {
+      tabContent[b].classList.remove('hide');
+      tabContent[b].classList.add('show');
+      let tabButton = tabContent[b].querySelector('.description-btn');
       modalWindow(tabButton);
     }
   }
   showTabContent(0);
 
-  info.addEventListener("click", function(event) {
+  info.addEventListener('click', function(event) {
     let target = event.target;
-    if (target && target.classList.contains("info-header-tab")) {
+    if (target && target.classList.contains('info-header-tab')) {
       for (let i = 0; i < tab.length; i++) {
         if (target == tab[i]) {
           hideTabContent(0);
@@ -37,7 +37,7 @@ window.addEventListener("DOMContentLoaded", function() {
   });
 
   // timer
-  let deadline = "2020-03-21";
+  let deadline = '2020-03-21';
   function getTimeRemaining(endtime) {
     let total = Date.parse(endtime) - Date.parse(new Date()),
       seconds = Math.floor((total / 1000) % 60),
@@ -48,15 +48,15 @@ window.addEventListener("DOMContentLoaded", function() {
       total,
       hours,
       minutes,
-      seconds
+      seconds,
     };
   }
 
   function setClock(id, endtime) {
     let timer = document.getElementById(id),
-      hours = timer.querySelector(".hours"),
-      minutes = timer.querySelector(".minutes"),
-      seconds = timer.querySelector(".seconds"),
+      hours = timer.querySelector('.hours'),
+      minutes = timer.querySelector('.minutes'),
+      seconds = timer.querySelector('.seconds'),
       timeInterval = setInterval(updateClock, 1000);
 
     function updateClock() {
@@ -64,7 +64,7 @@ window.addEventListener("DOMContentLoaded", function() {
 
       function addZero(num) {
         if (num <= 9) {
-          return "0" + num;
+          return '0' + num;
         } else return num;
       }
       hours.textContent = addZero(t.hours);
@@ -73,51 +73,51 @@ window.addEventListener("DOMContentLoaded", function() {
 
       if (t.total <= 0) {
         clearInterval(timeInterval);
-        hours.textContent = "00";
-        minutes.textContent = "00";
-        seconds.textContent = "00";
+        hours.textContent = '00';
+        minutes.textContent = '00';
+        seconds.textContent = '00';
       }
     }
   }
-  setClock("timer", deadline);
+  setClock('timer', deadline);
 
   // modal
-  let more = document.querySelector(".more");
+  let more = document.querySelector('.more');
 
   function modalWindow(element) {
-    let overlay = document.querySelector(".overlay");
-    let close = document.querySelector(".popup-close");
+    let overlay = document.querySelector('.overlay');
+    let close = document.querySelector('.popup-close');
 
-    element.addEventListener("click", function() {
-      overlay.style.display = "block";
-      this.classList.add("more-splash");
-      document.body.style.overflow = "hidden";
+    element.addEventListener('click', function() {
+      overlay.style.display = 'block';
+      this.classList.add('more-splash');
+      document.body.style.overflow = 'hidden';
     });
 
-    close.addEventListener("click", function() {
-      overlay.style.display = "none";
-      element.classList.remove("more-splash");
-      document.body.style.overflow = "";
+    close.addEventListener('click', function() {
+      overlay.style.display = 'none';
+      element.classList.remove('more-splash');
+      document.body.style.overflow = '';
     });
   }
   modalWindow(more);
 
   //form
   let message = {
-    loading: "Загрузка...",
-    success: "Спасибо! Скоро мы с вами свяжемся!",
-    failure: "Что-то пошло не так..."
+    loading: 'Загрузка...',
+    success: 'Спасибо! Скоро мы с вами свяжемся!',
+    failure: 'Что-то пошло не так...',
   };
 
-  let form = document.getElementById("main-form"),
-    formBottom = document.getElementById("form"),
-    input = document.getElementsByTagName("input"),
-    statusMessage = document.createElement("div");
+  let form = document.getElementById('main-form'),
+    formBottom = document.getElementById('form'),
+    input = document.getElementsByTagName('input'),
+    statusMessage = document.createElement('div');
 
-  statusMessage.classList.add("status");
+  statusMessage.classList.add('status');
 
   function sendForm(elem) {
-    elem.addEventListener("submit", function(event) {
+    elem.addEventListener('submit', function(event) {
       event.preventDefault();
       elem.appendChild(statusMessage);
 
@@ -126,11 +126,11 @@ window.addEventListener("DOMContentLoaded", function() {
       function postData(data) {
         return new Promise(function(resolve, reject) {
           let request = new XMLHttpRequest();
-          request.open("POST", "server.php");
+          request.open('POST', 'server.php');
 
           request.setRequestHeader(
-            "Content-type",
-            "application/json; charset=utf-8"
+            'Content-type',
+            'application/json; charset=utf-8',
           );
 
           let obj = {};
@@ -156,7 +156,7 @@ window.addEventListener("DOMContentLoaded", function() {
 
       function clearInput() {
         for (let i = 0; i < input.length; i++) {
-          input[i].value = "";
+          input[i].value = '';
         }
       }
 
